@@ -1,5 +1,9 @@
 #include <iostream>
+#include "fiddle.h"
+
+cPlainBox::cPlainBox(){};
 
 int main(){
-    std::cout << "Compiler test";
-};
+ 
+  return 0;
+}

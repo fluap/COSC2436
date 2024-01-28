@@ -188,3 +188,127 @@ The gas pedal in your car makes it go forward, or backwards. (hopefully not side
 ___
 ### The ADT Bag
 Long example made short, the ADT bag is a metaphorical and literal bag. (It's an analogy) The bag can contain a max number of items, and only certain items. The bag can have items added to it, taken out of it, and you can look in the bag to see whats in there. What you dont know about the bag, is how its carrying the items inside. (sometimes you do care how, but for the sake of the example, its trying to explain that each ADT will have aspects about it that are not required to be known.)
+
+
+# Interlude 1: C++ Classes
+
+Class templates are a way of specifying the datatype of the items contained within a data structure. A class can be created, and then be instantiated using different kinds of data. 
+
+As an example, the same code can be used for a class that uses strings versus one that uses integers.
+
+### How is this done?
+
+First and foremost, the specification and implementation of the class need to be separated:
+
+- **Header**, or **Specification** files(.h): provide a mechanism to partially separate the design of the class.
+- **Source** or **implementation** files (.cpp): contain the implementation of the class.
+
+## A problem to Solve
+
+**Box Game**
+
+A set of classes are required to develop three kinds of boxes. Each Box can only hold one item. A player can do the following with the boxes: Put an item in the box, or look at the item in the box.
+
+So far, we identified that the box being able to hold only one item is an **attribute**, and the *actions* of looking at an item, or placing an item inside the box are **methods**.
+
+There are three kinds of boxes in this game:
+
+- **Plain box**: A plain box that holds one item.
+- **Toy box**: A box that has a color and holds one item.
+- **Magic box**: A box that holds only one item, and changes into the item that was placed inside.
+
+We now know that there are some boxes that have more attributes, such as color. Other boxes one or more methods which allow the box to transform.
+
+### Classes Refresher
+
+#### Private Fields
+A private field restricts access to that datafield from within the class. functions outside of the class cannot access the attributes or methods marked as private.
+
+#### Constructors and Destructors
+- **Constructor**: A method that allocates memory for new instances of a class.
+
+The **Default constructor** has no parameters, and the attributes are set to their default values, or whatever the last value in memory at that location was.
+
+<details>
+```c
+classType objectName;
+```
+</details>
+<br>
+
+The **Parameterized constructor** initializes the data to inputted values during the instantiation of the class's object.
+
+<details>
+```c
+classType objectName(parameters);
+```
+</details>
+<br>
+
+- **Destructor**: A method that destroys a class when the object's life ends. This also frees memory.
+
+Destructors are not always required due to the compiler creating them, however its good practice to always include them as classes become more complex. 
+
+
+<details>
+
+```c
+ // Set the type of data stored in the box
+ typedef double ItemType;
+ // Declaration for the class PlainBox
+ class PlainBox
+{
+    private:
+        // Data field
+        ItemType item;
+    public:
+        // Default constructor
+        PlainBox();
+        // Parameterized constructor
+        PlainBox(const ItemType& theItem);
+        // Method to change the value of the data field
+        void setItem(const ItemType& theItem);
+        // Method to get the value of the data field
+        ItemType getItem() const;
+}; // end PlainBox
+#endif
+```
+
+</details>
+
+#### Methods
+
+A method is a function within a class. There are a few key aspects to methods which are good to know.
+
+- Method name.
+- Number of and type of its parameters.
+- The method's return type.
+
+**Prototype** methods that are accessible by the client are in the public section of a class and contain only these three things.
+
+<details>
+
+```c
+void functionName(int parameter);
+```
+
+</details>
+<br>
+
+An **Accessor Method** is a method in a class that access or *gets* the value of a datafield. Accessor methods do not modify the attribute they are accessing!
+
+<details>
+
+```c
+dataType getAttribute() const; //prototype
+
+dataType getAttribute() const {
+    return theAttributeValue;
+}
+```
+
+</details>
+<br>
+
+# To be continued...
+
