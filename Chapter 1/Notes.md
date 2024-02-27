@@ -295,14 +295,14 @@ void functionName(int parameter);
 </details>
 <br>
 
-An **Accessor Method** is a method in a class that access or *gets* the value of a datafield. Accessor methods do not modify the attribute they are accessing!
+An **Accessor Method** is a method in a class that access or *gets* the value of a datafield. Accessor methods do not modify the attribute they are accessing! These are called getters.
 
 <details>
 
 ```c
 dataType getAttribute() const; //prototype
 
-dataType getAttribute() const {
+dataType getAttribute() const { //const is a promise that it will not modify the attribute. Can be passed const attributes.
     return theAttributeValue;
 }
 ```
@@ -310,5 +310,23 @@ dataType getAttribute() const {
 </details>
 <br>
 
-# To be continued...
+A **Mutator** method in a class changes the value of a data field. These are called setters.
+
+**Passing parameters by constant reference:** Saves execution time and memory allocation. Particularly when the parameter is a large object. Also good practice for security reasons.
+
+```c
+void x() const; // constant function
+x(const  ItemType& parameter ); //Parameter passed by constant reference.
+```
+
+#### Redefinitions (And how to avoid them)
+
+Redefinitions cause compiler errors. Inline / within function redefinitions are usually pretty easy to avoid. Objects however commonly have multiple places where they are defined, and yet must only be defined once during compilation.
+
+This is where **#ifndef** and **#define** come in.
+
+- #ifndef x: if not defined.
+- #define x: define.
+
+It works like a conditional, if whatever x stands for is not defined, then defined it. This conditional definition is handled by **Preprocessor directives**.
 
